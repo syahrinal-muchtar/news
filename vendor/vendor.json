@@ -1,6 +1,6 @@
 {
 	"comment": "",
 	"ignore": "test",
-	"package": [],
+	"package": ["github.com/jinzhu/gorm"],
 	"rootPath": "Online/News"
 }
