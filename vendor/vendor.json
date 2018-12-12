@@ -3,6 +3,36 @@
 	"ignore": "test",
 	"package": [
 		{
+			"path": "News/Config",
+			"revision": ""
+		},
+		{
+			"path": "News/Routers",
+			"revision": ""
+		},
+		{
+			"path": "appengine/cloudsql",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "M0B+RAHAi/TTDayAxZMApDJt9JM=",
+			"path": "cloud.google.com/go/civil",
+			"revision": "f04f8040c7ac5ef84bf389f43277997d7e349ffb",
+			"revisionTime": "2018-11-20T22:56:30Z"
+		},
+		{
+			"checksumSHA1": "itwkLGGKnRrm7RD8SaBcZmW36yE=",
+			"path": "github.com/denisenkom/go-mssqldb",
+			"revision": "4e0d7dc8888fbb59764060e99b7b68e77a6f9698",
+			"revisionTime": "2018-10-14T14:49:52Z"
+		},
+		{
+			"checksumSHA1": "4y7Hv8IPGF177L3VM0LKSqGLfAc=",
+			"path": "github.com/denisenkom/go-mssqldb/internal/cp",
+			"revision": "4e0d7dc8888fbb59764060e99b7b68e77a6f9698",
+			"revisionTime": "2018-10-14T14:49:52Z"
+		},
+		{
 			"checksumSHA1": "DGDYxKoRGxjxsbhmN7aUmXA31+A=",
 			"path": "github.com/go-redis/redis",
 			"revision": "11cf9400d58a23fe233f2544ed4cd55b7a373f89",
@@ -51,16 +81,59 @@
 			"revisionTime": "2018-12-11T11:17:41Z"
 		},
 		{
-			"checksumSHA1": "IXaD98gh4R+c+j3B9rzYF8m1smA=",
+			"checksumSHA1": "Ypjy0Pa/KoFNC6QM7ViQsbZIgvc=",
+			"path": "github.com/go-sql-driver/mysql",
+			"revision": "60d456a402782453be397030407e34decaf04d73",
+			"revisionTime": "2018-12-02T17:10:36Z"
+		},
+		{
+			"checksumSHA1": "xF89ZMSh3ChkIunloT5cp/kQG3s=",
 			"path": "github.com/jinzhu/gorm",
 			"revision": "472c70caa40267cb89fd8facb07fe6454b578626",
-			"revisionTime": "2018-11-03T14:14:39Z"
+			"revisionTime": "2018-11-03T14:14:39Z",
+			"tree": true
 		},
 		{
 			"checksumSHA1": "mfb/EusMwfajCPq0lwLWM/pvqI4=",
 			"path": "github.com/jinzhu/inflection",
 			"revision": "04140366298a54a039076d798123ffa108fff46c",
 			"revisionTime": "2018-03-08T03:36:59Z"
+		},
+		{
+			"checksumSHA1": "asksIwylfIjaYsF2nMY69jTyxC0=",
+			"path": "github.com/lib/pq",
+			"revision": "9eb73efc1fcc404148b56765b0d3f61d9a5ef8ee",
+			"revisionTime": "2018-10-16T16:26:27Z"
+		},
+		{
+			"checksumSHA1": "wYhUtPI9cCxqkXtXUGeF7l1xaoU=",
+			"path": "github.com/lib/pq/hstore",
+			"revision": "9eb73efc1fcc404148b56765b0d3f61d9a5ef8ee",
+			"revisionTime": "2018-10-16T16:26:27Z"
+		},
+		{
+			"checksumSHA1": "GX2hcQP8YqrXH+laJJIxUFsqoxU=",
+			"path": "github.com/lib/pq/oid",
+			"revision": "9eb73efc1fcc404148b56765b0d3f61d9a5ef8ee",
+			"revisionTime": "2018-10-16T16:26:27Z"
+		},
+		{
+			"checksumSHA1": "fA1+eninQWXmGpdcq/FMU3cUX6A=",
+			"path": "github.com/mattn/go-sqlite3",
+			"revision": "03cb0c0623bd3dd467afdec9f3e1d4deeca7890c",
+			"revisionTime": "2018-12-08T16:24:40Z"
+		},
+		{
+			"checksumSHA1": "MCeXr2RNeiG1XG6V+er1OR0qyeo=",
+			"path": "golang.org/x/crypto/md4",
+			"revision": "505ab145d0a99da450461ae2c1a9f6cd10d1f447",
+			"revisionTime": "2018-09-26T22:07:39Z"
+		},
+		{
+			"checksumSHA1": "W/pYxFe8/FHT10/wulwesJsOoUw=",
+			"path": "google.golang.org/appengine/cloudsql",
+			"revision": "a37df1387b4521194676d88c79230c613610d5f4",
+			"revisionTime": "2018-12-03T16:37:10Z"
 		}
 	],
 	"rootPath": "Online/News"
