@@ -58,13 +58,13 @@ func SetupRouter() *gin.Engine {
 	}
 	v6 := r.Group("/api/v1/news")
 	{
-		v6.GET("/", auth, Controllers.ShowNews)
-		v6.GET("/:id", auth, Controllers.ShowNewsDetail)
+		v6.GET("/", Controllers.ShowNews)
+		v6.GET("/:id", Controllers.ShowNewsDetail)
 	}
 	v7 := r.Group("/api/v1/hotnews")
 	{
-		v7.GET("/", auth, Controllers.ShowHotNews)
-		v7.GET("/:id", auth, Controllers.ShowHotNewsDetail)
+		v7.GET("/", Controllers.ShowHotNews)
+		v7.GET("/:id", Controllers.ShowHotNewsDetail)
 	}
 
 	return r
