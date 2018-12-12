@@ -16,13 +16,13 @@ import (
 )
 
 func ShowNews(c *gin.Context) {
-	// page := c.Query("page")
+	page := c.Query("page")
 	var news []Models.News
 	err := Models.ShowNews(&news)
 	if err != nil {
 		ApiHelpers.RespondJSON(c, 404, news)
 	} else {
-		page, _ := strconv.Atoi(c.DefaultQuery("page", "2"))
+		page, _ := strconv.Atoi(c.DefaultQuery("page", page))
 		limit, _ := strconv.Atoi(c.DefaultQuery("limit", "5"))
 
 		paginator := pagination.Pagging(&pagination.Param{
