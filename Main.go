@@ -104,6 +104,7 @@ func main() {
 	Config.DB.Model(&Models.Post_Tag{}).AddForeignKey("tag_id", "tags(id)", "NO ACTION", "NO ACTION")
 
 	r := Routers.SetupRouter()
+
 	// running
 	r.Run()
 }

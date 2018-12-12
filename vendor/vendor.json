@@ -79,6 +79,12 @@
 			"revisionTime": "2017-12-05T05:05:44Z"
 		},
 		{
+			"checksumSHA1": "T72xzNGJOslPge0cvAgKWfE5xA4=",
+			"path": "github.com/gin-contrib/cors",
+			"revision": "7c641a7a7dc5548100d5749436059b022de56075",
+			"revisionTime": "2018-12-06T03:51:31Z"
+		},
+		{
 			"checksumSHA1": "BhMowD2DIKSd9qq8Pzh7Y3mh2/w=",
 			"path": "github.com/gin-contrib/sse",
 			"revision": "22d885f9ecc78bf4ee5d72b937e4bbcdc58e8cae",
