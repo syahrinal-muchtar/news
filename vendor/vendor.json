@@ -11,6 +11,10 @@
 			"revision": ""
 		},
 		{
+			"path": "News/Models",
+			"revision": ""
+		},
+		{
 			"path": "appengine/cloudsql",
 			"revision": ""
 		},
