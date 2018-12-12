@@ -1,9 +1,9 @@
 package Routers
 
 import (
+	"News/Controllers"
 	"fmt"
 	"net/http"
-	"news/Controllers"
 
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
