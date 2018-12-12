@@ -22,7 +22,7 @@ func ShowNews(c *gin.Context) {
 	if err != nil {
 		ApiHelpers.RespondJSON(c, 404, news)
 	} else {
-		page, _ := strconv.Atoi(c.DefaultQuery("page", page))
+		page, _ := strconv.Atoi(c.DefaultQuery("page", "2"))
 		limit, _ := strconv.Atoi(c.DefaultQuery("limit", "5"))
 
 		paginator := pagination.Pagging(&pagination.Param{
