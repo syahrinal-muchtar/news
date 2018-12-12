@@ -16,7 +16,7 @@ import (
 )
 
 func ShowNews(c *gin.Context) {
-	page := c.Query("page")
+	// page := c.Query("page")
 	var news []Models.News
 	err := Models.ShowNews(&news)
 	if err != nil {
