@@ -105,9 +105,17 @@ func ShowHotNewsDetail(c *gin.Context) {
 	if err != nil {
 		// handle error
 	}
+	var resolvedURL = os.Getenv("REDIS_URL")
+	var password = ""
+	if !strings.Contains(resolvedURL, "localhost") {
+		parsedURL, _ := url.Parse(resolvedURL)
+		password, _ = parsedURL.User.Password()
+		resolvedURL = parsedURL.Host
+	}
+	fmt.Printf("connecting to %s", resolvedURL)
 	client := redis.NewClient(&redis.Options{
-		Addr:     "localhost:6379",
-		Password: "",
+		Addr:     resolvedURL,
+		Password: password,
 		DB:       0,
 	})
 
