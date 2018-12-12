@@ -99,7 +99,7 @@ func ShowHotNewsDetail(c *gin.Context) {
 
 	// ApiHelpers.RespondJSON(c, 200, news)
 	// ids := c.Query("id")
-	ids := c.PostForm("id")
+	ids := c.Params.ByName("id")
 	id, err := strconv.Atoi(ids)
 
 	if err != nil {
