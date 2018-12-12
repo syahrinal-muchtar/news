@@ -5,10 +5,12 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/jinzhu/gorm"
+
+	"News/Config"
 	"News/Routers"
 
 	"github.com/go-redis/redis"
-	"github.com/jinzhu/gorm"
 )
 
 var err error
@@ -22,7 +24,7 @@ func main22() {
 	client := redis.NewClient(&redis.Options{
 		Addr:     "localhost:6379",
 		Password: "", // no password set
-		DB:       0,  // use default DB
+		DB:       0,  // use default Config.DB
 	})
 
 	// val, err := client.Get("latestnews").Result()
@@ -69,37 +71,37 @@ func main22() {
 
 func main() {
 
-	DB, err := gorm.Open("mysql", "b181e8e3a141e0:f492804@tcp(us-cdbr-iron-east-01.cleardb.net:3306)/heroku_ea827574aff1230?charset=utf8&parseTime=True&loc=Local")
+	Config.DB, err = gorm.Open("mysql", "b181e8e3a141e0:f4928a04@tcp(us-cConfig.DBr-iron-east-01.clearConfig.DB.net:3306)/heroku_ea827574aff1230?charset=utf8&parseTime=True&loc=Local")
 
 	if err != nil {
 		fmt.Println("status: ", err)
 	}
-	defer DB.Close()
+	defer Config.DB.Close()
 
 	//Migration User
-	DB.AutoMigrate(&Models.User{})
-	DB.Model(&Models.User{}).AddUniqueIndex("idx_email", "email")
+	Config.DB.AutoMigrate(&Models.User{})
+	Config.DB.Model(&Models.User{}).AddUniqueIndex("idx_email", "email")
 
 	//Migration Category
-	DB.AutoMigrate(&Models.Category{})
-	DB.Model(&Models.Category{}).AddUniqueIndex("idx_name", "name")
+	Config.DB.AutoMigrate(&Models.Category{})
+	Config.DB.Model(&Models.Category{}).AddUniqueIndex("idx_name", "name")
 
 	//Migration POST
-	DB.AutoMigrate(&Models.Post{})
-	DB.Model(&Models.Post{}).ModifyColumn("content", "text")
-	DB.Model(&Models.Post{}).AddForeignKey("user_id", "users(id)", "RESTRICT", "RESTRICT")
-	DB.Model(&Models.Post{}).AddForeignKey("category_id", "categories(id)", "RESTRICT", "RESTRICT")
+	Config.DB.AutoMigrate(&Models.Post{})
+	Config.DB.Model(&Models.Post{}).ModifyColumn("content", "text")
+	Config.DB.Model(&Models.Post{}).AddForeignKey("user_id", "users(id)", "RESTRICT", "RESTRICT")
+	Config.DB.Model(&Models.Post{}).AddForeignKey("category_id", "categories(id)", "RESTRICT", "RESTRICT")
 
 	//Migration Comment
-	DB.AutoMigrate(&Models.Comment{})
-	DB.Model(&Models.Comment{}).AddForeignKey("user_id", "users(id)", "RESTRICT", "RESTRICT")
+	Config.DB.AutoMigrate(&Models.Comment{})
+	Config.DB.Model(&Models.Comment{}).AddForeignKey("user_id", "users(id)", "RESTRICT", "RESTRICT")
 
 	//Migration Tag
-	DB.AutoMigrate(&Models.Tag{})
+	Config.DB.AutoMigrate(&Models.Tag{})
 	//Migration Post_Tag
-	DB.AutoMigrate(&Models.Post_Tag{})
-	DB.Model(&Models.Post_Tag{}).AddForeignKey("post_id", "posts(id)", "NO ACTION", "NO ACTION")
-	DB.Model(&Models.Post_Tag{}).AddForeignKey("tag_id", "tags(id)", "NO ACTION", "NO ACTION")
+	Config.DB.AutoMigrate(&Models.Post_Tag{})
+	Config.DB.Model(&Models.Post_Tag{}).AddForeignKey("post_id", "posts(id)", "NO ACTION", "NO ACTION")
+	Config.DB.Model(&Models.Post_Tag{}).AddForeignKey("tag_id", "tags(id)", "NO ACTION", "NO ACTION")
 
 	r := Routers.SetupRouter()
 	// running
