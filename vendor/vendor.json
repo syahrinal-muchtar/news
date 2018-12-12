@@ -25,6 +25,12 @@
 			"revisionTime": "2018-11-20T22:56:30Z"
 		},
 		{
+			"checksumSHA1": "8Ghc57hDGXbWBKQETJjKGAuveQ8=",
+			"path": "github.com/biezhi/gorm-paginator/pagination",
+			"revision": "76b8070a5f1f71bdee12122408900833c2559da1",
+			"revisionTime": "2018-05-18T07:52:51Z"
+		},
+		{
 			"checksumSHA1": "7LyTr+zdkO5pd/DzX6RHR2QwS9w=",
 			"path": "github.com/campoy/embedmd",
 			"revision": "97c13d6e41602fc6e397eb51c45f38069371a969",
