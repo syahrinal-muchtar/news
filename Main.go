@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"News/Config"
 	"News/Routers"
 
 	"github.com/go-redis/redis"
@@ -70,37 +69,37 @@ func main22() {
 
 func main() {
 
-	Config.DB, err = gorm.Open("mysql", "b181e8e3a141e0:f4928a04@tcp(us-cdbr-iron-east-01.cleardb.net)/heroku_ea827574aff1230?charset=utf8&parseTime=True&loc=Local")
+	DB, err := gorm.Open("mysql", "root:@tcp(127.0.0.1:3306)/news?charset=utf8&parseTime=True&loc=Local")
 
 	if err != nil {
 		fmt.Println("status: ", err)
 	}
-	defer Config.DB.Close()
+	defer DB.Close()
 
 	//Migration User
-	Config.DB.AutoMigrate(&Models.User{})
-	Config.DB.Model(&Models.User{}).AddUniqueIndex("idx_email", "email")
+	DB.AutoMigrate(&Models.User{})
+	DB.Model(&Models.User{}).AddUniqueIndex("idx_email", "email")
 
 	//Migration Category
-	Config.DB.AutoMigrate(&Models.Category{})
-	Config.DB.Model(&Models.Category{}).AddUniqueIndex("idx_name", "name")
+	DB.AutoMigrate(&Models.Category{})
+	DB.Model(&Models.Category{}).AddUniqueIndex("idx_name", "name")
 
 	//Migration POST
-	Config.DB.AutoMigrate(&Models.Post{})
-	Config.DB.Model(&Models.Post{}).ModifyColumn("content", "text")
-	Config.DB.Model(&Models.Post{}).AddForeignKey("user_id", "users(id)", "RESTRICT", "RESTRICT")
-	Config.DB.Model(&Models.Post{}).AddForeignKey("category_id", "categories(id)", "RESTRICT", "RESTRICT")
+	DB.AutoMigrate(&Models.Post{})
+	DB.Model(&Models.Post{}).ModifyColumn("content", "text")
+	DB.Model(&Models.Post{}).AddForeignKey("user_id", "users(id)", "RESTRICT", "RESTRICT")
+	DB.Model(&Models.Post{}).AddForeignKey("category_id", "categories(id)", "RESTRICT", "RESTRICT")
 
 	//Migration Comment
-	Config.DB.AutoMigrate(&Models.Comment{})
-	Config.DB.Model(&Models.Comment{}).AddForeignKey("user_id", "users(id)", "RESTRICT", "RESTRICT")
+	DB.AutoMigrate(&Models.Comment{})
+	DB.Model(&Models.Comment{}).AddForeignKey("user_id", "users(id)", "RESTRICT", "RESTRICT")
 
 	//Migration Tag
-	Config.DB.AutoMigrate(&Models.Tag{})
+	DB.AutoMigrate(&Models.Tag{})
 	//Migration Post_Tag
-	Config.DB.AutoMigrate(&Models.Post_Tag{})
-	Config.DB.Model(&Models.Post_Tag{}).AddForeignKey("post_id", "posts(id)", "NO ACTION", "NO ACTION")
-	Config.DB.Model(&Models.Post_Tag{}).AddForeignKey("tag_id", "tags(id)", "NO ACTION", "NO ACTION")
+	DB.AutoMigrate(&Models.Post_Tag{})
+	DB.Model(&Models.Post_Tag{}).AddForeignKey("post_id", "posts(id)", "NO ACTION", "NO ACTION")
+	DB.Model(&Models.Post_Tag{}).AddForeignKey("tag_id", "tags(id)", "NO ACTION", "NO ACTION")
 
 	r := Routers.SetupRouter()
 	// running
