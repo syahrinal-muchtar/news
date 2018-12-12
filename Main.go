@@ -71,7 +71,7 @@ func main22() {
 
 func main() {
 
-	Config.DB, err = gorm.Open("mysql", "b181e8e3a141e0:f4928a04@tcp(us-cConfig.DBr-iron-east-01.clearConfig.DB.net:3306)/heroku_ea827574aff1230?charset=utf8&parseTime=True&loc=Local")
+	Config.DB, err = gorm.Open("mysql", "b181e8e3a141e0:f4928a04@tcp(us-cdbr-iron-east-01.cleardb.net:3306)/heroku_ea827574aff1230?charset=utf8&parseTime=True&loc=Local")
 
 	if err != nil {
 		fmt.Println("status: ", err)
