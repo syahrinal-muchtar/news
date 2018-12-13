@@ -2,7 +2,6 @@ package main
 
 import (
 	"News/Models"
-	"encoding/json"
 	"fmt"
 
 	"github.com/jinzhu/gorm"
@@ -11,64 +10,9 @@ import (
 	"News/Routers"
 
 	"github.com/gin-contrib/cors"
-	"github.com/go-redis/redis"
 )
 
 var err error
-
-type coba struct {
-	Title  string
-	Author string
-}
-
-func main22() {
-	client := redis.NewClient(&redis.Options{
-		Addr:     "localhost:6379",
-		Password: "", // no password set
-		DB:       0,  // use default Config.DB
-	})
-
-	// val, err := client.Get("latestnews").Result()
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// fmt.Println("latestnews", val)
-
-	// err = client.Set("latestnews", "valueapa coba", 0).Err()
-	// if err != nil {
-	// 	panic(err)
-	// }
-
-	val, err := client.LRange("latestNews", 0, 100).Result()
-	if err != nil {
-		panic(err)
-	}
-
-	b, _ := json.Marshal(val)
-	// Convert bytes to string.
-	s := string(b)
-	fmt.Println(s)
-
-	for i := range val {
-		fmt.Println(val[i])
-	}
-	// mapD := map[string]int{"apple": 5, "lettuce": 7}
-	// mapD = map[string]int{"apple": 5, "lettuce": 7}
-	// x["key"] = append(x["key"], "value")
-	// mapB, _ := json.Marshal(mapD)
-	// fmt.Println(string(mapB))
-
-	// x := make(map[string][]string)
-
-	// x["key"] = append(x["key"], "value")
-	// x["key"] = append(x["key"], "value1")
-
-	// fmt.Println(x["key"][0])
-	// fmt.Println(x["key"][1])
-
-	// fmt.Println("latestnews", val[0])
-	// fmt.Println(ini.Title)
-}
 
 func main() {
 
