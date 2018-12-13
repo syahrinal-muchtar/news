@@ -62,6 +62,7 @@ func SetupRouter() *gin.Engine {
 	v6 := r.Group("/api/v1/news")
 	{
 		v6.GET("/", Controllers.ShowNews)
+		v6.OPTIONS("/", preflight)
 		v6.GET("/:id", Controllers.ShowNewsDetail)
 	}
 	v7 := r.Group("/api/v1/hotnews")
@@ -71,6 +72,12 @@ func SetupRouter() *gin.Engine {
 	}
 
 	return r
+}
+
+func preflight(c *gin.Context) {
+	c.Header("Access-Control-Allow-Origin", "*")
+	c.Header("Access-Control-Allow-Headers", "access-control-allow-origin, access-control-allow-headers")
+	c.JSON(http.StatusOK, struct{}{})
 }
 
 func auth(c *gin.Context) {
