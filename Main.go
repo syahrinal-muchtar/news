@@ -8,8 +8,6 @@ import (
 
 	"News/Config"
 	"News/Routers"
-
-	"github.com/gin-contrib/cors"
 )
 
 var err error
@@ -49,7 +47,7 @@ func main() {
 	Config.DB.Model(&Models.Post_Tag{}).AddForeignKey("tag_id", "tags(id)", "NO ACTION", "NO ACTION")
 
 	r := Routers.SetupRouter()
-	r.Use(cors.Default())
+	// r.Use(cors.Default())
 
 	// running
 	r.Run()
