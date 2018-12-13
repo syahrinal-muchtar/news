@@ -61,9 +61,7 @@ func SetupRouter() *gin.Engine {
 	}
 	v6 := r.Group("/api/v1/news")
 	{
-		// v6.Use(cors.Default())
 		v6.GET("/", Controllers.ShowNews)
-		// v6.OPTIONS("/", preflight)
 		v6.GET("/:id", Controllers.ShowNewsDetail)
 	}
 	v7 := r.Group("/api/v1/hotnews")
