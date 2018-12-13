@@ -8,6 +8,8 @@ import (
 
 	"News/Config"
 	"News/Routers"
+
+	"github.com/gin-contrib/cors"
 )
 
 var err error
