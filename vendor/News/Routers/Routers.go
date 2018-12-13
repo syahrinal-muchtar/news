@@ -11,9 +11,9 @@ import (
 
 func SetupRouter() *gin.Engine {
 	r := gin.Default()
-	r.Use(CORSMiddleware())
+	// r.Use(CORSMiddleware())
 
-	r.OPTIONS("/*path", CORSMiddleware())
+	// r.OPTIONS("/*path", CORSMiddleware())
 
 	r.Static("/Public", "./Public") //Route Pictures
 
@@ -71,14 +71,6 @@ func SetupRouter() *gin.Engine {
 	}
 
 	return r
-}
-
-func CORSMiddleware() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
-		origin := c.Request.Header.Get("Origin")
-		c.Writer.Header().Set("Access-Control-Allow-Origin", origin)
-	}
 }
 
 func auth(c *gin.Context) {

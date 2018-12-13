@@ -10,6 +10,7 @@ import (
 	"News/Config"
 	"News/Routers"
 
+	"github.com/gin-contrib/cors"
 	"github.com/go-redis/redis"
 )
 
@@ -104,6 +105,7 @@ func main() {
 	Config.DB.Model(&Models.Post_Tag{}).AddForeignKey("tag_id", "tags(id)", "NO ACTION", "NO ACTION")
 
 	r := Routers.SetupRouter()
+	r.Use(cors.Default())
 
 	// running
 	r.Run()
