@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	jwt "github.com/dgrijalva/jwt-go"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -61,6 +62,7 @@ func SetupRouter() *gin.Engine {
 	}
 	v6 := r.Group("/api/v1/news")
 	{
+		v6.Use(cors.Default())
 		v6.GET("/", Controllers.ShowNews)
 		v6.GET("/:id", Controllers.ShowNewsDetail)
 	}
