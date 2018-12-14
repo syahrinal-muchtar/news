@@ -12,7 +12,13 @@ import (
 
 func SetupRouter() *gin.Engine {
 	r := gin.Default()
-	r.Use(cors.Default())
+
+	config := cors.DefaultConfig()
+	config.AllowAllOrigins = true
+	config.AllowCredentials = true
+	config.AddAllowHeaders("authorization")
+	r.Use(cors.New(config))
+
 	// r.Use(CORSMiddleware())
 
 	// r.OPTIONS("/*path", CORSMiddleware())
