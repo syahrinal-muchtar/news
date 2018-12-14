@@ -4,8 +4,10 @@ import (
 	"News/Controllers"
 	"fmt"
 	"net/http"
+	"time"
 
 	jwt "github.com/dgrijalva/jwt-go"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -22,7 +24,17 @@ func SetupRouter() *gin.Engine {
 	// 	MaxAge:           86400,
 	// }))
 
-	r.Use(CORS())
+	r.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{"https://news148.herokuapp.com"},
+		AllowMethods:     []string{"PUT", "PATCH", "GET"},
+		AllowHeaders:     []string{"Origin"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+		AllowOriginFunc: func(origin string) bool {
+			return origin == "https://news148.herokuapp.com"
+		},
+		MaxAge: 12 * time.Hour,
+	}))
 
 	// r.OPTIONS("/*path", CORSMiddleware())
 
