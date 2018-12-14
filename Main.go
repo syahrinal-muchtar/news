@@ -52,16 +52,17 @@ func main() {
 	// r := Routers.SetupRouter()
 
 	r := gin.Default()
+	r.Use(cors.Default())
 
-	r.Use(cors.New(cors.Config{
-		AllowMethods:     []string{"GET", "POST", "OPTIONS", "PUT"},
-		AllowHeaders:     []string{"Origin", "Content-Length", "Content-Type", "User-Agent", "Referrer", "Host", "Token"},
-		ExposeHeaders:    []string{"Content-Length"},
-		AllowCredentials: true,
-		AllowAllOrigins:  false,
-		AllowOriginFunc:  func(origin string) bool { return true },
-		MaxAge:           86400,
-	}))
+	// r.Use(cors.New(cors.Config{
+	// 	AllowMethods:     []string{"GET", "POST", "OPTIONS", "PUT"},
+	// 	AllowHeaders:     []string{"Origin", "Content-Length", "Content-Type", "User-Agent", "Referrer", "Host", "Token"},
+	// 	ExposeHeaders:    []string{"Content-Length"},
+	// 	AllowCredentials: true,
+	// 	AllowAllOrigins:  false,
+	// 	AllowOriginFunc:  func(origin string) bool { return true },
+	// 	MaxAge:           86400,
+	// }))
 
 	r.Static("/Public", "./Public") //Route Pictures
 
