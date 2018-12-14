@@ -71,7 +71,7 @@ func SetupRouter() *gin.Engine {
 		v5.POST("/", auth, Controllers.AddPostTag)
 		v5.GET("/:id", auth, Controllers.GetPost) //Show any post by tag
 	}
-	v6 := r.Group("/api/v1/newsss")
+	v6 := r.Group("/api/v1/news")
 	{
 		v6.GET("/", Controllers.ShowNews)
 		v6.GET("/:id", Controllers.ShowNewsDetail)
