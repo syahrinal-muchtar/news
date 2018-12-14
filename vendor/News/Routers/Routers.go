@@ -13,11 +13,15 @@ import (
 func SetupRouter() *gin.Engine {
 	r := gin.Default()
 
-	config := cors.DefaultConfig()
-	config.AllowAllOrigins = true
-	config.AllowCredentials = true
-	config.AddAllowHeaders("authorization")
-	r.Use(cors.New(config))
+	r.Use(cors.New(cors.Config{
+		AllowMethods:     []string{"GET", "POST", "OPTIONS", "PUT"},
+		AllowHeaders:     []string{"Origin", "Content-Length", "Content-Type", "User-Agent", "Referrer", "Host", "Token"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+		AllowAllOrigins:  false,
+		AllowOriginFunc:  func(origin string) bool { return true },
+		MaxAge:           86400,
+	}))
 
 	// r.Use(CORSMiddleware())
 
@@ -67,7 +71,7 @@ func SetupRouter() *gin.Engine {
 		v5.POST("/", auth, Controllers.AddPostTag)
 		v5.GET("/:id", auth, Controllers.GetPost) //Show any post by tag
 	}
-	v6 := r.Group("/api/v1/news")
+	v6 := r.Group("/api/v1/newsss")
 	{
 		v6.GET("/", Controllers.ShowNews)
 		v6.GET("/:id", Controllers.ShowNewsDetail)
