@@ -12,6 +12,7 @@ import (
 
 func SetupRouter() *gin.Engine {
 	r := gin.Default()
+	r.Use(cors.Default())
 	// r.Use(CORSMiddleware())
 
 	// r.OPTIONS("/*path", CORSMiddleware())
@@ -62,7 +63,6 @@ func SetupRouter() *gin.Engine {
 	}
 	v6 := r.Group("/api/v1/news")
 	{
-		v6.Use(cors.Default())
 		v6.GET("/", Controllers.ShowNews)
 		v6.GET("/:id", Controllers.ShowNewsDetail)
 	}
