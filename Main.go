@@ -64,7 +64,6 @@ func main() {
 		},
 		MaxAge: 12 * time.Hour,
 	}))
-	r.Run()
 
 	// r.Use(cors.New(cors.Config{
 	// 	AllowMethods:     []string{"GET", "POST", "OPTIONS", "PUT"},
@@ -93,7 +92,7 @@ func main() {
 	}
 
 	// running
-
+	r.Run()
 }
 
 func CORSMiddleware() gin.HandlerFunc {
