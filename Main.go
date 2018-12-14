@@ -4,10 +4,13 @@ import (
 	"News/Models"
 	"fmt"
 
+	"github.com/gin-contrib/cors"
+	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 
 	"News/Config"
-	"News/Routers"
+	// "News/Routers"
+	"News/Controllers"
 )
 
 var err error
@@ -46,7 +49,35 @@ func main() {
 	Config.DB.Model(&Models.Post_Tag{}).AddForeignKey("post_id", "posts(id)", "NO ACTION", "NO ACTION")
 	Config.DB.Model(&Models.Post_Tag{}).AddForeignKey("tag_id", "tags(id)", "NO ACTION", "NO ACTION")
 
-	r := Routers.SetupRouter()
+	// r := Routers.SetupRouter()
+
+	r := gin.Default()
+
+	r.Use(cors.New(cors.Config{
+		AllowMethods:     []string{"GET", "POST", "OPTIONS", "PUT"},
+		AllowHeaders:     []string{"Origin", "Content-Length", "Content-Type", "User-Agent", "Referrer", "Host", "Token"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+		AllowAllOrigins:  false,
+		AllowOriginFunc:  func(origin string) bool { return true },
+		MaxAge:           86400,
+	}))
+
+	r.Static("/Public", "./Public") //Route Pictures
+
+	r.POST("login", Controllers.LoginUser)
+
+	// r.POST("upload", Controllers.UploadImgPost)
+	v6 := r.Group("/api/v1/news")
+	{
+		v6.GET("/", Controllers.ShowNews)
+		v6.GET("/:id", Controllers.ShowNewsDetail)
+	}
+	v7 := r.Group("/api/v1/hotnews")
+	{
+		v7.GET("/", Controllers.ShowHotNews)
+		v7.GET("/:id", Controllers.ShowHotNewsDetail)
+	}
 
 	// running
 	r.Run()
