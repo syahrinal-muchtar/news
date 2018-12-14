@@ -16,7 +16,7 @@ var err error
 
 func main() {
 
-	Config.DB, err = gorm.Open("mysql", "sapa148:password@tcp(db4free.net:3306)/sapa148_db?charset=utf8&parseTime=True&loc=Local")
+	Config.DB, err = gorm.Open("mysql", "sapa148:password@tcp(db4free.net:3306)/sapa148_db?charset=utf8mb4&parseTime=True&loc=Local")
 
 	if err != nil {
 		fmt.Println("status: ", err)
