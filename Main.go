@@ -3,7 +3,9 @@ package main
 import (
 	"News/Models"
 	"fmt"
+	"time"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 
@@ -51,7 +53,18 @@ func main() {
 	// r := Routers.SetupRouter()
 
 	r := gin.Default()
-	r.Use(CORSMiddleware())
+	r.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{"https://news148.herokuapp.com"},
+		AllowMethods:     []string{"PUT", "PATCH", "GET"},
+		AllowHeaders:     []string{"Origin"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+		AllowOriginFunc: func(origin string) bool {
+			return origin == "https://github.com"
+		},
+		MaxAge: 12 * time.Hour,
+	}))
+	r.Run()
 
 	// r.Use(cors.New(cors.Config{
 	// 	AllowMethods:     []string{"GET", "POST", "OPTIONS", "PUT"},
@@ -80,7 +93,7 @@ func main() {
 	}
 
 	// running
-	r.Run()
+
 }
 
 func CORSMiddleware() gin.HandlerFunc {
